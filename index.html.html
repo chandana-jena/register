@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            border: 2px solid black;
+            justify-content: center;
+            background-image: url('wallpaperflare.com_wallpaper (2).jpg');
+            background-size: cover;
+
+        }
+
+        .form {
+            height: 450px;
+            width: 450px;
+            border: 2px solid blueviolet;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            background: white;
+            border: 0 none;
+            border-radius: 3px;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+            margin: auto;
+
+
+        }
+
+        form {
+            padding: 50px;
+        }
+
+        form label {
+            font-size: 20px;
+            margin-top: 40px;
+        }
+
+        form input {
+            margin-top: 40px;
+            border-top: 5PX;
+            border-left: none;
+            border-right: none;
+            outline: 0;
+
+        }
+
+        button {
+            margin-top: 35px;
+            width: 150px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        button:hover{
+            background-color: red;
+            transition: 0.7s;
+            border: none;
+            color: white;
+
+        }
+        h3{
+            color: red;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="form">
+
+            <form action="" class="maindata">
+                <h3>CSA JOINING FORM</h3>
+                <label for="name">Name :</label>
+                <input type="text" name="name" required>
+                <br>
+                <label for="name">Email :</label>
+                <input type="email" name="Email" required>
+                <br>
+                <label for="number">Phone :</label>
+                <input type="text" name="phone" required>
+                <br>
+                <button id="btn">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    let data = document.querySelector('.maindata');
+    console.log(data);
+    let button = document.querySelectorAll('#btn');
+    console.log(button);
+    data.addEventListener('submit', (e) => {
+
+        let name = e.target.name.value;
+        console.log(name)
+        let email = e.target.Email.value;
+        console.log(email)
+        let phone = e.target.phone.value;
+        console.log(phone)
+
+        let userdate = JSON.parse(localStorage.getItem("userdeatails")) ?? [];
+        userdate.push({
+            'name': name,
+            'phone': phone,
+            'Email': email
+        })
+
+        let finaldata = localStorage.setItem("userdeatails", JSON.stringify(userdate));
+
+        confirm(finaldata)
+
+
+
+        e.preventDefault();
+
+    })
+</script>
+
+</html>
